@@ -1,0 +1,436 @@
+<odoo>
+  <data>
+
+        <record id="view_sale_order_wizard_form" model="ir.ui.view">
+		<field name="name">Margin Approval</field>
+		<field name="model">sale.order.wizard</field>
+		<field name="arch" type="xml">
+			<form >
+                <p>You are going to approve Margin.</p>
+
+				<footer>
+					<button name="action_to_approved" string="Ok" type="object" class="btn-primary"/>
+				</footer>
+			</form>
+		</field>
+
+	</record>
+
+        <record id="view_cr_expired_wizard_form" model="ir.ui.view">
+		<field name="name">CR expired</field>
+		<field name="model">sale.order.wizard</field>
+		<field name="arch" type="xml">
+			<form >
+                <p>You are going to approve Expired CR.</p>
+				<footer>
+					<button name="action_to_approved" string="Ok" type="object" class="btn-primary"/>
+				</footer>
+			</form>
+		</field>
+	</record>
+
+        <record id="view_govt_expired_wizard_form" model="ir.ui.view">
+		<field name="name">Expired Gov Document</field>
+		<field name="model">sale.order.wizard</field>
+		<field name="arch" type="xml">
+			<form >
+                <p>You are going to approve Expired Gov Document.</p>
+				<footer>
+					<button name="action_to_approved" string="Ok" type="object" class="btn-primary"/>
+				</footer>
+			</form>
+		</field>
+	</record>
+
+              <record id="view_credit_limit_wizard_form" model="ir.ui.view">
+		<field name="name">Sale Order Amount greater than available credit</field>
+		<field name="model">sale.order.wizard</field>
+		<field name="arch" type="xml">
+			<form >
+                <p>You are going to approve Sale Order Amount greater than available credit.</p>
+				<footer>
+					<button name="action_to_approved" string="Ok" type="object" class="btn-primary"/>
+				</footer>
+			</form>
+		</field>
+	</record>
+
+
+           <record model="ir.ui.view" id="account_payment_form_inh">
+           <field name="name">account.payment.form.inh</field>
+           <field name="model">account.payment</field>
+           <field name="inherit_id" ref="account.view_account_payment_form"/>
+           <field name="arch" type="xml">
+               <xpath expr="//field[@name='journal_id']" position="after">
+                       <field name="origin_no" readonly="1"/>
+               </xpath>
+           </field>
+       </record>
+
+
+
+        <record id="view_order_form_inherit_sale_order" model="ir.ui.view">
+            <field name="name">sale.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                     <xpath expr="//field[@name='order_line']/tree//field[@name='margin_percent']" position="attributes">
+                     <attribute name="groups">almoudi_extended.group_show_hide_sale_margin</attribute>
+              </xpath>
+		     <xpath expr="//field[@name='order_line']/tree//field[@name='purchase_price']" position="attributes">
+                     <attribute name="groups">almoudi_extended.group_show_hide_sale_margin</attribute>
+              </xpath>
+
+
+                <xpath expr="//button[@name='action_confirm']" position="replace">
+                    <button name="action_confirm" states="manager,approved,margin,date_approved,baldiya_approved,final_approve" string="Confirm Sale"
+                            class="btn-primary o_sale_confirm" type="object" groups="almoudi_extended.group_show_confirm_sale"/>
+                </xpath>
+                <xpath expr="//button[@name='action_cancel']" position="replace">
+                    <button name="action_cancel" states="draft,sent,sale,approved,manager" type="object"
+                            string="Cancel"/>
+                </xpath>
+
+                <xpath expr="//button[@name='action_confirm'][2]" position="replace">
+                    <button name="action_confirm" states="sent,approved" string="Confirm"
+                            class="btn-primary o_sale_confirm" type="object" invisible="1" groups="almoudi_extended.group_show_confirm_sale"/>
+                </xpath>
+                <xpath expr="//field[@name='payment_term_id']" position="after">
+                    <field name="allowed_margin" invisible="1"/>
+                    <field name="logged_user_id"/>
+                    <field name="check" invisible="1"/>
+                    <field name="btn_approved_check" invisible="1"/>
+                </xpath>
+                <xpath expr="//button[@name='action_confirm'][2]" position="after">
+                    <button name="from_manager_approval" attrs="{'invisible': ['|',('check', '=', False),('state','not in',['draft','sent','margin','approved','date_approved','baldiya_approved'])]}" type="object" class="oe_highlight"
+                            string="Approval From Manager" groups="sales_team.group_sale_salesman"/>
+                </xpath>
+                  <xpath expr="//button[@name='action_confirm'][2]" position="after">
+                    <button name="action_show_sale_products"  attrs="{'invisible': ['|',('btn_approved_check', '=', False),('state','not in',['draft','manager','approved','margin','date_approved','baldiya_approved'])]}" type="object" class="oe_highlight"
+                            string="Approved" groups="almoudi_extended.group_credit_sales_manager"/>
+                </xpath>
+
+                <xpath expr="//field[@name='payment_term_id']" position="after">
+                    <field name="credit_date"/>
+                    <field name="baldiya_date"/>
+                    <field name="credit_amount"/>
+                     <field name="total_due"  readonly="1" force_save="1"/>
+                    <field name="total_sale_amount" invisible="0" readonly="1" force_save="1"/>
+                    <field name="available_amount" invisible="0" readonly="1" force_save="1"/>
+                    <field name="cr_approve" invisible="1"/>
+                    <field name="baldiya_approve" invisible="1"/>
+                    <field name="expiry_approve" invisible="1"/>
+                </xpath>
+
+                     <xpath expr="//field[@name='order_line']//tree//field[@name='product_uom_qty']" position="after">
+                    <field name="available_qty" readonly="1" force_save="1"/>
+                     </xpath>
+            </field>
+        </record>
+
+
+
+        <record id="users_inherit" model="ir.ui.view">
+            <field name="name">users.inherit</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='access_rights']" position="after">
+                    <page string="Sale Approval">
+                        <group>
+                            <group>
+                                <field name="allowed_margin"/>
+                                <field name="default_stock_warehouse"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+
+    <record model="ir.ui.view" id="inherit_sale_order_product_margin_qty">
+        <field name="name">sale order product margin qty</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_margin.sale_margin_sale_order_line_form"/>
+
+          <field name="arch" type="xml">
+            <xpath expr="//field[@name='margin']" position="attributes">
+               <attribute name="groups">almoudi_extended.group_show_hide_sale_margin</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="inherit_product_common_form">
+        <field name="name">product almoudi extended</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+
+          <field name="arch" type="xml">
+            <xpath expr="//field[@name='categ_id']" position="after">
+               <field name="aswaq_code"/>
+               <field name="categ_description_eng"/>
+               <field name="series_cat_id"/>
+
+               <field name="radial_id"/>
+               <field name="pattern_id"/>
+               <field name="short_series_id"/>
+
+               <field name="product_types_id"/>
+               <field name="brand_id"/>
+               <field name="manufacturer_id"/>
+
+               <field name="main_vendor"/>
+               <field name="c_unit_r"/>
+               <field name="container_qty"/>
+
+               <field name="prd_standard_price"/>
+               <field name="prd_average_cost"/>
+               <field name="five_digits"/>
+
+               <field name="eight_digits"/>
+               <field name="performance_categ_id"/>
+           </xpath>
+           <xpath expr="//field[@name='company_id']" position="after">
+               <field name="speed_symbol_id"/>
+
+               <field name="tread_depth"/>
+               <field name="tread_wear"/>
+               <field name="traction_id"/>
+
+               <field name="temperature_id"/>
+               <field name="oere_id"/>
+               <field name="origin_id"/>
+
+               <field name="oe"/>
+               <field name="tube_type_id"/>
+               <field name="road_type_ids" widget="many2many_tags"/>
+
+               <field name="rim_one_id"/>
+               <field name="rim_two_id"/>
+               <field name="inflation"/>
+               <field name="star_rating" widget="priority" nolabel="0"/>
+
+
+
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="inherit_telenoc_customer_form">
+        <field name="name">Customer almoudi extended</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='vat']" position="after">
+                <field name="showroom_id"/>
+                 <field name="create_date_cr"/>
+
+                <field name="years_of_relation"/>
+                <field name="customer_status"/>
+
+                <field name="brand_id"/>
+                <field name="brand_category_id"/>
+                <field name="account_manger_id"/>
+
+
+
+                <field name="is_credit"  class="oe_inline" />
+                <field name="is_cash"  class="oe_inline" />
+
+                <field name="cr_number"/>
+                <field name="start_crdate"/>
+                <field name="expiry_crdate"/>
+                <field name="gov_number"/>
+
+                <field name="gov_number_expiry_date"/>
+                <field name="credit_period"/>
+                <field name="credit_limit"/>
+
+            </xpath>
+
+
+        </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="inherit_telenoc_customer_form_create_date">
+        <field name="name">Customer almoudi extended2</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='industry_id']" position="after">
+            <!-- domain="[('id','in',industry_sub_category_id.ids)]" -->
+               <field name="sub_category_id"  domain= "[('id','in',industry_sub_category_id)]" options="{'no_create_edit': True, 'no_open': True, 'no_create':True}" />
+                <field name="industry_sub_category_id" widget="many2many_tags" invisible="1"/>
+            </xpath>
+
+        </field>
+    </record>
+    <record model="ir.ui.view" id="inherit_sale_order_product_margin_qty">
+        <field name="name">sale order product margin qty</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_margin.sale_margin_sale_order_line_form"/>
+
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='margin']" position="attributes">
+               <attribute name="groups">almoudi_extended.group_show_hide_sale_margin</attribute>
+            </xpath>
+            <xpath expr="//field[@name='margin_percent']" position="attributes">
+               <attribute name="groups">almoudi_extended.group_show_hide_sale_margin</attribute>
+            </xpath>
+        </field>
+    </record>
+
+     <record model="ir.ui.view" id="inherit_main_form_sale_margin_qty">
+        <field name="name">sale order main margin qty</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_margin.sale_margin_sale_order"/>
+
+        <field name="arch" type="xml">
+
+
+
+            <xpath expr="//div[@class='text-nowrap']" position="attributes">
+               <attribute name="groups">almoudi_extended.group_show_hide_sale_margin</attribute>
+            </xpath>
+
+            <xpath expr="//label[@for='margin']" position="attributes">
+               <attribute name="groups">almoudi_extended.group_show_hide_sale_margin</attribute>
+            </xpath>
+        </field>
+    </record>
+
+
+
+
+    <record model="ir.ui.view" id="inherit_product_common_form">
+        <field name="name">product almoudi extended</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+
+          <field name="arch" type="xml">
+            <xpath expr="//field[@name='categ_id']" position="after">
+               <field name="aswaq_code"/>
+               <field name="categ_description_eng"/>
+               <field name="series_cat_id"/>
+
+               <field name="radial_id"/>
+               <field name="pattern_id"/>
+               <field name="short_series_id"/>
+
+               <field name="product_types_id"/>
+               <field name="brand_id"/>
+               <field name="manufacturer_id"/>
+
+               <field name="main_vendor"/>
+               <field name="c_unit_r"/>
+               <field name="container_qty"/>
+
+               <field name="prd_standard_price"/>
+               <field name="prd_average_cost"/>
+               <field name="five_digits"/>
+
+               <field name="eight_digits"/>
+               <field name="performance_categ_id"/>
+           </xpath>
+           <xpath expr="//field[@name='company_id']" position="after">
+               <field name="speed_symbol_id"/>
+
+               <field name="tread_depth"/>
+               <field name="tread_wear"/>
+               <field name="traction_id"/>
+
+               <field name="temperature_id"/>
+               <field name="oere_id"/>
+               <field name="origin_id"/>
+
+               <field name="oe"/>
+               <field name="tube_type_id"/>
+               <field name="road_type_ids" widget="many2many_tags"/>
+
+               <field name="rim_one_id"/>
+               <field name="rim_two_id"/>
+               <field name="inflation"/>
+                <field name="max_size"/>
+               <field name="load_range"/>
+               <field name="load_index_single"/>
+               <field name="star_rating" widget="priority" nolabel="0"/>
+
+
+
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="inherit_telenoc_customer_form">
+        <field name="name">Customer almoudi extended</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='vat']" position="after">
+                <field name="showroom_id"/>
+		     <field name="create_date_cr"/>
+                <field name="years_of_relation"/>
+                <field name="customer_status"/>
+                <field name="brand_id"/>
+                <field name="brand_category_id"/>
+                <field name="account_manger_id"/>
+                <field name="is_credit"  class="oe_inline" />
+                <field name="is_cash"  class="oe_inline" />
+
+                <field name="cr_number"/>
+                <field name="start_crdate"/>
+                <field name="expiry_crdate"/>
+                <field name="gov_number"/>
+
+                <field name="gov_number_expiry_date"/>
+                <field name="credit_period"/>
+                <field name="credit_limit"/>
+              
+            </xpath>
+
+        </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="inherit_partner_industry_category_form">
+        <field name="name">Industry form almoudi extended</field>
+        <field name="model">res.partner.industry</field>
+        <field name="inherit_id" ref="base.res_partner_industry_view_form"/>
+        <field name="arch" type="xml">
+              <xpath expr="//field[@name='active']" position="after">
+                  <field name="sub_category_id"/>
+              </xpath>
+
+        </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="inherit_partner_industry_category_tree">
+        <field name="name">Industry tree almoudi extended</field>
+        <field name="model">res.partner.industry</field>
+        <field name="inherit_id" ref="base.res_partner_industry_view_tree"/>
+        <field name="arch" type="xml">
+              <xpath expr="//field[@name='active']" position="after">
+                  <field name="sub_category_id"/>
+              </xpath>
+
+        </field>
+    </record>
+
+
+
+
+
+
+
+
+
+
+
+
+  </data>
+
+</odoo>

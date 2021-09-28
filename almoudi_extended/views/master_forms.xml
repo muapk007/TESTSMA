@@ -1,0 +1,982 @@
+<odoo>
+    <data>
+            <!-- start series cate form -->
+        <record id="series_cat_form_view" model="ir.ui.view">
+            <field name="name">series category form</field>
+            <field name="model">series.category</field>
+            <field name="arch" type="xml">
+                <form string="Series Cat">
+                    <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                     </group>   
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="series_cat_tree_view" model="ir.ui.view">
+            <field name="name">series category tree</field>
+            <field name="model">series.category</field>
+            <field name="arch" type="xml">
+                <tree string="series Tree">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+         <record id="action_series_cat" model="ir.actions.act_window">
+            <field name="name">Series Category</field>
+            <field name="res_model">series.category</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="series_cat_tree_view"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Add a new series
+                </p>
+            </field>
+        </record>
+        <menuitem id="telenoc_master_menu"
+            name="Masterform"
+            parent="sale.sale_menu_root"
+            sequence="2"/>
+            
+        <menuitem id="series_cat_menu" name="Series Cat Form" action="action_series_cat" parent="telenoc_master_menu"/>
+        <!-- end series cate form -->
+        
+        <!-- start SeriesRadial -->
+         <record id="series_radial_form_view" model="ir.ui.view">
+            <field name="name">series radial form</field>
+            <field name="model">series.radial</field>
+            <field name="arch" type="xml">
+                <form string="Series Radial">
+                    <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                     </group>   
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="series_radial_tree_view" model="ir.ui.view">
+            <field name="name">series radial tree</field>
+            <field name="model">series.radial</field>
+            <field name="arch" type="xml">
+                <tree string="series radial">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+         <record id="action_series_radial" model="ir.actions.act_window">
+            <field name="name">Radial</field>
+            <field name="res_model">series.radial</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="series_cat_tree_view"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Add a new series
+                </p>
+            </field>
+        </record>
+        
+        <menuitem id="series_radial_menu" name="Radial" action="action_series_radial" parent="telenoc_master_menu"/>
+        
+        <!-- end SeriesRadial -->
+        
+        <!-- start SeriesPattern-->
+         <record id="series_pattern_form_view" model="ir.ui.view">
+            <field name="name">series pattern form</field>
+            <field name="model">series.pattern</field>
+            <field name="arch" type="xml">
+                <form string="Series pattern">
+                    <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                     </group>   
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="series_pattern_tree_view" model="ir.ui.view">
+            <field name="name">series pattern tree</field>
+            <field name="model">series.pattern</field>
+            <field name="arch" type="xml">
+                <tree string="series pattern">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+         <record id="action_series_pattern" model="ir.actions.act_window">
+            <field name="name">Pattern</field>
+            <field name="res_model">series.pattern</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="series_pattern_tree_view"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Add a new series
+                </p>
+            </field>
+        </record>
+        
+        <menuitem id="series_pattern_menu" name="Pattern" action="action_series_pattern" parent="telenoc_master_menu"/>
+        
+        <!-- end Seriespattern-->
+        
+        
+          <!-- start ShortSeriesCategory-->
+         <record id="series_short_series_category_form_view" model="ir.ui.view">
+            <field name="name">series short series category form</field>
+            <field name="model">short.series.category</field>
+            <field name="arch" type="xml">
+                <form string="Short Series Category">
+                    <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                     </group>   
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="short_series_category_tree_view" model="ir.ui.view">
+            <field name="name">series pattern tree</field>
+            <field name="model">short.series.category</field>
+            <field name="arch" type="xml">
+                <tree string="short series category">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+         <record id="action_short_series_category" model="ir.actions.act_window">
+            <field name="name">Short Series</field>
+            <field name="res_model">short.series.category</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="short_series_category_tree_view"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Add a new series
+                </p>
+            </field>
+        </record>
+        
+        <menuitem id="series_short_category_menu" name="Short Series" action="action_short_series_category" parent="telenoc_master_menu"/>
+        
+        <!-- end ShortSeriesCategory-->
+        
+         <!-- start SeriesProductType-->
+         <record id="series_product_type_form_view" model="ir.ui.view">
+            <field name="name">series product type form</field>
+            <field name="model">series.product.type</field>
+            <field name="arch" type="xml">
+                <form string="Series Product type">
+                    <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                     </group>   
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="series_product_type_tree_view" model="ir.ui.view">
+            <field name="name">series product type tree</field>
+            <field name="model">series.product.type</field>
+            <field name="arch" type="xml">
+                <tree string="series product type">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+         <record id="action_series_product_type" model="ir.actions.act_window">
+            <field name="name">Product Type</field>
+            <field name="res_model">series.product.type</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="series_product_type_tree_view"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Add a new series
+                </p>
+            </field>
+        </record>
+        
+        <menuitem id="series_product_type_menu" name="Product Type" action="action_series_product_type" parent="telenoc_master_menu"/>
+        
+        <!-- end ShortSeriesCategory-->
+        
+        <!-- start SeriesProductBrand-->
+         <record id="series_product_brand_form_view" model="ir.ui.view">
+            <field name="name">series product brand form</field>
+            <field name="model">series.product.brand</field>
+            <field name="arch" type="xml">
+                <form string="Series Product Brand">
+                    <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                     </group>   
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="series_product_brand_tree_view" model="ir.ui.view">
+            <field name="name">series product brand tree</field>
+            <field name="model">series.product.brand</field>
+            <field name="arch" type="xml">
+                <tree string="series product brand">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+         <record id="action_series_product_brand" model="ir.actions.act_window">
+            <field name="name">Brand</field>
+            <field name="res_model">series.product.brand</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="series_product_brand_tree_view"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Add a new record
+                </p>
+            </field>
+        </record>
+        
+        <menuitem id="series_product_brand_menu" name="Brand" action="action_series_product_brand" parent="telenoc_master_menu"/>
+        
+        <!-- end ShortSeriesCategory-->
+        
+        <!-- start performanceCategory -->
+        
+          <record id="product_performance_category_form_view" model="ir.ui.view">
+            <field name="name">product performance category form</field>
+            <field name="model">performance.category</field>
+            <field name="arch" type="xml">
+                <form string="Performance category">
+                    <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                     </group>   
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="product_performance_category_tree_view" model="ir.ui.view">
+            <field name="name">product performance category tree</field>
+            <field name="model">performance.category</field>
+            <field name="arch" type="xml">
+                <tree string="Performance category">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        
+         <record id="action_performance_category" model="ir.actions.act_window">
+            <field name="name">Performance category</field>
+            <field name="res_model">performance.category</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="product_performance_category_tree_view"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Add a new record
+                </p>
+            </field>
+        </record>
+        
+        <menuitem id="product_performance_category_menu" name="Performance Category" action="action_performance_category" parent="telenoc_master_menu"/>
+      
+       <!-- end performanceCategory -->
+       
+        <!-- start SpeedSymbol -->
+        <record id="speed_symbol_form_view" model="ir.ui.view">
+            <field name="name">speed symbol form</field>
+            <field name="model">speed.symbol</field>
+            <field name="arch" type="xml">
+                <form string="Speed Symbol">
+                    <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                     </group>   
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="speed_symbol_tree_view" model="ir.ui.view">
+            <field name="name">speed symbol tree</field>
+            <field name="model">speed.symbol</field>
+            <field name="arch" type="xml">
+                <tree string="Speed Symbol">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        
+         <record id="action_speed_symbol" model="ir.actions.act_window">
+            <field name="name">Speed Symbol</field>
+            <field name="res_model">speed.symbol</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="speed_symbol_tree_view"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Add a new record
+                </p>
+            </field>
+        </record>
+        
+        <menuitem id="menu_speed_symbol" name="Speed Symbol" action="action_speed_symbol" parent="telenoc_master_menu"/>
+      
+        <!-- end SpeedSymbol-->
+        
+        <!--start traction control system  -->
+          <record id="traction_control_system_form_view" model="ir.ui.view">
+            <field name="name">traction control system form</field>
+            <field name="model">traction.control.system</field>
+            <field name="arch" type="xml">
+                <form string="Traction Control System">
+                    <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                     </group>   
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="traction_control_system_tree" model="ir.ui.view">
+            <field name="name">traction control system tree</field>
+            <field name="model">traction.control.system</field>
+            <field name="arch" type="xml">
+                <tree string="Traction Control System">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        
+         <record id="action_traction_control_system" model="ir.actions.act_window">
+            <field name="name">Traction</field>
+            <field name="res_model">traction.control.system</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="traction_control_system_tree"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Add a new record
+                </p>
+            </field>
+        </record>
+        
+        <menuitem id="menu_traction_control_system" name="Traction" action="action_traction_control_system" parent="telenoc_master_menu"/>
+       <!--end traction control system  -->
+       
+      <!--start temperature control system  -->
+           <record id="temperature_control_system_form_view" model="ir.ui.view">
+            <field name="name">temperature control system form</field>
+            <field name="model">temperature.control.system</field>
+            <field name="arch" type="xml">
+                <form string="temperature Control System">
+                    <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                     </group>   
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="temperature_control_system_tree_view" model="ir.ui.view">
+            <field name="name">temperature control system tree</field>
+            <field name="model">temperature.control.system</field>
+            <field name="arch" type="xml">
+                <tree string="Temperature Control System">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        
+         <record id="action_temperature_control_system" model="ir.actions.act_window">
+            <field name="name">Temperature</field>
+            <field name="res_model">temperature.control.system</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="temperature_control_system_tree_view"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Add a new record
+                </p>
+            </field>
+        </record>
+        
+        <menuitem id="menu_temperature_control_system" name="Temperature" action="action_temperature_control_system" parent="telenoc_master_menu"/>
+      <!--end temperature control system  --> 
+        
+        
+        <!--start OEsystem  -->
+           <record id="original_equipment_form_view" model="ir.ui.view">
+            <field name="name">original equipment form</field>
+            <field name="model">original.equipment</field>
+            <field name="arch" type="xml">
+                <form string="Original equipment System">
+                    <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                     </group>   
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="original_equipment_tree_view" model="ir.ui.view">
+            <field name="name">original equipment system tree</field>
+            <field name="model">original.equipment</field>
+            <field name="arch" type="xml">
+                <tree string="Original equipment System">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        
+         <record id="action_original_equipment" model="ir.actions.act_window">
+            <field name="name">OE/RE</field>
+            <field name="res_model">original.equipment</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="original_equipment_tree_view"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Add a new record
+                </p>
+            </field>
+        </record>
+        
+        <menuitem id="menu_original_equipment" name="OE/RE" action="action_original_equipment" parent="telenoc_master_menu"/>
+      <!--end OEsystem  -->  
+       
+       
+       <!--start productorigins  -->
+           <record id="product_origins_form_view" model="ir.ui.view">
+            <field name="name">product origins form</field>
+            <field name="model">product.origins</field>
+            <field name="arch" type="xml">
+                <form string="Product Origin">
+                    <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                     </group>   
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="product_origins_tree_view" model="ir.ui.view">
+            <field name="name">product origins tree</field>
+            <field name="model">product.origins</field>
+            <field name="arch" type="xml">
+                <tree string="Product Origins Tree">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        
+         <record id="action_product_origins" model="ir.actions.act_window">
+            <field name="name">Origin</field>
+            <field name="res_model">product.origins</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="product_origins_tree_view"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Add a new record
+                </p>
+            </field>
+        </record>
+        
+        <menuitem id="menu_product_origins" name="Origin" action="action_product_origins" parent="telenoc_master_menu"/>
+      <!--end productorigins  -->   
+     
+        <!--start tubetype  -->
+           <record id="tube_type_form_view" model="ir.ui.view">
+            <field name="name">tube type form</field>
+            <field name="model">tube.type</field>
+            <field name="arch" type="xml">
+                <form string="Tube Type">
+                    <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                     </group>   
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="tube_type_tree_view" model="ir.ui.view">
+            <field name="name">tube type tree</field>
+            <field name="model">tube.type</field>
+            <field name="arch" type="xml">
+                <tree string="Tube Type">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        
+         <record id="action_tube_type" model="ir.actions.act_window">
+            <field name="name">Tube type</field>
+            <field name="res_model">tube.type</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="tube_type_tree_view"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Add a new record
+                </p>
+            </field>
+        </record>
+        
+        <menuitem id="menu_tube_type" name="Tube type" action="action_tube_type" parent="telenoc_master_menu"/>
+      <!--end tubetype  -->
+      
+         <!--start roadtype  -->
+           <record id="road_type_form_view" model="ir.ui.view">
+            <field name="name">road type form</field>
+            <field name="model">road.type</field>
+            <field name="arch" type="xml">
+                <form string="road Type">
+                    <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                     </group>   
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="road_type_tree_view" model="ir.ui.view">
+            <field name="name">road type tree</field>
+            <field name="model">road.type</field>
+            <field name="arch" type="xml">
+                <tree string="Road Type">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        
+         <record id="action_road_type" model="ir.actions.act_window">
+            <field name="name">Road type</field>
+            <field name="res_model">road.type</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="road_type_tree_view"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Add a new record
+                </p>
+            </field>
+        </record>
+        
+        <menuitem id="menu_road_type" name="Road type" action="action_road_type" parent="telenoc_master_menu"/>
+      <!--end roadtype -->  
+        
+         <!--start rim position one  -->
+           <record id="rim_position_one_form_view" model="ir.ui.view">
+            <field name="name">rim position one form</field>
+            <field name="model">rim.position.one</field>
+            <field name="arch" type="xml">
+                <form string="Rim Position One">
+                    <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                     </group>   
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="rim_position_one_tree_view" model="ir.ui.view">
+            <field name="name">rim position one tree</field>
+            <field name="model">rim.position.one</field>
+            <field name="arch" type="xml">
+                <tree string="Rim Position One">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        
+         <record id="action_rim_position_one" model="ir.actions.act_window">
+            <field name="name">Rim Position One</field>
+            <field name="res_model">rim.position.one</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="rim_position_one_tree_view"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Add a new record
+                </p>
+            </field>
+        </record>
+        
+        <menuitem id="menu_rim_position_one" name="Rim Position One" action="action_rim_position_one" parent="telenoc_master_menu"/>
+      <!--end rim position one -->    
+        
+      
+      
+         <!--start rim position two  -->
+           <record id="rim_position_two_form_view" model="ir.ui.view">
+            <field name="name">rim position two form</field>
+            <field name="model">rim.position.two</field>
+            <field name="arch" type="xml">
+                <form string="Rim Position Two">
+                    <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                     </group>   
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="rim_position_two_tree_view" model="ir.ui.view">
+            <field name="name">rim position two tree</field>
+            <field name="model">rim.position.two</field>
+            <field name="arch" type="xml">
+                <tree string="Rim Position Two">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        
+         <record id="action_rim_position_two" model="ir.actions.act_window">
+            <field name="name">Rim Position Two</field>
+            <field name="res_model">rim.position.two</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="rim_position_two_tree_view"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Add a new record
+                </p>
+            </field>
+        </record>
+        
+        <menuitem id="menu_rim_position_two" name="Rim Position Two" action="action_rim_position_two" parent="telenoc_master_menu"/>
+      <!--end rim position two --> 
+      <!--start showroom  -->
+           <record id="customer_showroom_form_view" model="ir.ui.view">
+            <field name="name">showroom form</field>
+            <field name="model">customer.showroom</field>
+            <field name="arch" type="xml">
+                <form string="Show Room">
+                    <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                     </group>   
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="customer_showroom_tree_view" model="ir.ui.view">
+            <field name="name">showroom tree</field>
+            <field name="model">customer.showroom</field>
+            <field name="arch" type="xml">
+                <tree string="Showroom">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        
+         <record id="action_customer_showroom" model="ir.actions.act_window">
+            <field name="name">Showroom</field>
+            <field name="res_model">customer.showroom</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="customer_showroom_tree_view"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Add a new record
+                </p>
+            </field>
+        </record>
+        
+        <menuitem id="menu_customer_showroom" name="Showroom" action="action_customer_showroom" parent="telenoc_master_menu"/>
+    <!--end showroom  -->
+    
+    <!-- start brandcategory -->
+     <record id="brand_category_form_view" model="ir.ui.view">
+            <field name="name">brand category form</field>
+            <field name="model">brand.category</field>
+            <field name="arch" type="xml">
+                <form string="Brand Category">
+                    <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                     </group>   
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="brand_category_tree_view" model="ir.ui.view">
+            <field name="name">brand category tree</field>
+            <field name="model">brand.category</field>
+            <field name="arch" type="xml">
+                <tree string="Brand Category">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        
+         <record id="action_brand_category" model="ir.actions.act_window">
+            <field name="name">Brand Category</field>
+            <field name="res_model">brand.category</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="brand_category_tree_view"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Add a new record
+                </p>
+            </field>
+        </record>
+        
+        <menuitem id="menu_brand_category" name="Brand Category" action="action_brand_category" parent="telenoc_master_menu"/>
+   <!-- end brandcategory -->
+   <!--start account manager  -->
+   <record id="account_manager_form_view" model="ir.ui.view">
+            <field name="name">account manager form</field>
+            <field name="model">account.manager</field>
+            <field name="arch" type="xml">
+                <form string="Account Manager">
+                    <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                     </group>   
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="account_manager_tree_view" model="ir.ui.view">
+            <field name="name">account manager tree</field>
+            <field name="model">account.manager</field>
+            <field name="arch" type="xml">
+                <tree string="Account Manager">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        
+         <record id="action_account_manager" model="ir.actions.act_window">
+            <field name="name">Account Manager</field>
+            <field name="res_model">account.manager</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="account_manager_tree_view"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Add a new record
+                </p>
+            </field>
+        </record>
+        
+        <menuitem id="menu_account_manager" name="Account Manager" action="action_account_manager" parent="telenoc_master_menu"/>
+   
+   <!--end account manager  -->
+    <!-- start sub category -->
+     <record id="sub_category_form_view" model="ir.ui.view">
+            <field name="name">sub category form</field>
+            <field name="model">sub.category</field>
+            <field name="arch" type="xml">
+                <form string="Sub Category">
+                    <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                     </group>   
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="sub_category_tree_view" model="ir.ui.view">
+            <field name="name">sub category tree</field>
+            <field name="model">sub.category</field>
+            <field name="arch" type="xml">
+                <tree string="Sub Category">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        
+         <record id="action_sub_category" model="ir.actions.act_window">
+            <field name="name">Sub Category</field>
+            <field name="res_model">sub.category</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="sub_category_tree_view"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Add a new record
+                </p>
+            </field>
+        </record>
+        
+        <menuitem id="menu_sub_category" name="Sub Category" action="action_sub_category" parent="telenoc_master_menu"/>
+   
+    
+    
+    <!-- end subcategory -->
+      
+      
+    <!-- start size  -->
+     <record id="size_form_view" model="ir.ui.view">
+            <field name="name">size form</field>
+            <field name="model">product.size</field>
+            <field name="arch" type="xml">
+                <form string="product size">
+                    <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="width"/>
+                            <field name="aspect_ratio"/>
+                            <field name="rim"/>
+                        </group>
+                     </group>   
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="size_tree_view" model="ir.ui.view">
+            <field name="name">size tree</field>
+            <field name="model">product.size</field>
+            <field name="arch" type="xml">
+                <tree string="size">
+                    <field name="name"/>
+                            <field name="width"/>
+                            <field name="aspect_ratio"/>
+                            <field name="rim"/>
+                </tree>
+            </field>
+        </record>
+        
+         <record id="action_size" model="ir.actions.act_window">
+            <field name="name">Main size</field>
+            <field name="res_model">product.size</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="size_tree_view"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Add a new record
+                </p>
+            </field>
+        </record>
+        
+        <menuitem id="menu_size" name="Main size" action="action_size" parent="telenoc_master_menu"/>
+     <!-- end size -->
+      
+       <!-- start load range  -->
+     <record id="load_range_form_view" model="ir.ui.view">
+            <field name="name">load range form</field>
+            <field name="model">load.range</field>
+            <field name="arch" type="xml">
+                <form string="product size">
+                    <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="ply_rating"/>
+                           
+                        </group>
+                     </group>   
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="load_range_tree_view" model="ir.ui.view">
+            <field name="name">size tree</field>
+            <field name="model">load.range</field>
+            <field name="arch" type="xml">
+                <tree string="size">
+                    
+                              <field name="name"/>
+                            <field name="ply_rating"/>
+                           
+                </tree>
+            </field>
+        </record>
+        
+         <record id="action_load_range" model="ir.actions.act_window">
+            <field name="name">Load Range</field>
+            <field name="res_model">load.range</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="load_range_tree_view"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Add a new record
+                </p>
+            </field>
+        </record>
+        
+        <menuitem id="menu_load_range" name="Load Range" action="action_load_range" parent="telenoc_master_menu"/>
+     <!-- end load range -->
+      
+      
+      <record id="index_single_form_view" model="ir.ui.view">
+            <field name="name">Load Index Single form</field>
+            <field name="model">index.single</field>
+            <field name="arch" type="xml">
+                <form string="Load Index Single">
+                    <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="max_load"/>
+                           <field name="load_index_dual"/>
+                        </group>
+                     </group>   
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="index_single_tree_view" model="ir.ui.view">
+            <field name="name">Load Index Single tree</field>
+            <field name="model">index.single</field>
+            <field name="arch" type="xml">
+                <tree string="size">
+                      <field name="name"/>
+                            <field name="max_load"/>
+                           <field name="load_index_dual"/>
+                           
+                </tree>
+            </field>
+        </record>
+        
+         <record id="action_index_single" model="ir.actions.act_window">
+            <field name="name">Load Index Single</field>
+            <field name="res_model">index.single</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="index_single_tree_view"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Add a new record
+                </p>
+            </field>
+        </record>
+        
+        <menuitem id="menu_index_single" name="Load Index Single" action="action_index_single" parent="telenoc_master_menu"/>   
+        
+        
+        
+        
+        
+    </data>
+
+
+
+</odoo>
